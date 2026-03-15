@@ -1,4 +1,4 @@
-package structs
+package structs_example
 
 import "math"
 
@@ -15,10 +15,29 @@ func (r Rectangle) Area() float64 {
 	return r.Height * r.Width
 }
 
+func (r Rectangle) MutA() {
+	r.Width *= 2
+	r.Height *= 2
+}
+
+func (r *Rectangle) MutB() {
+	r.Width *= 2
+	r.Height *= 2
+}
+
 type Circle struct {
 	Radius float64
 }
 
 func (c Circle) Area() float64 {
 	return math.Pi * c.Radius * c.Radius
+}
+
+type Triangle struct {
+	sideA float64
+	sideB float64
+}
+
+func (t Triangle) Area() float64 {
+	return Rectangle{t.sideA, t.sideB}.Area() / 2
 }
